@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CiHeart } from 'react-icons/ci';
 import { IoCartOutline } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
+import { AppContext } from '../Context/UseContext';
 
 const Navbar = () => {
     const links = <>
@@ -9,6 +10,7 @@ const Navbar = () => {
     <li><NavLink to='/statistics'>Statistics</NavLink></li>
     <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
+    const {cart, wishlist} = useContext(AppContext)
     return (
         <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -44,7 +46,21 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     <button className="btn rounded-full text-xl bg-white"><IoCartOutline></IoCartOutline></button>
+    
+      {
+      cart.length > 0 && (
+        <span className="absolute top-6 right-40 bg-purple-500 text-white text-sm font-bold rounded-full px-2">
+            {cart.length}
+        </span>
+    )}
+    
     <button className="btn ml-3 rounded-full text-xl bg-white"><CiHeart></CiHeart></button>
+    {
+      wishlist.length > 0 && (
+        <span className="absolute top-6 right-42 bg-purple-500 text-white text-sm font-bold rounded-full px-2">
+            {wishlist.length}
+        </span>
+    )}
   </div>
 </div>
     );
