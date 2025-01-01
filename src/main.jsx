@@ -5,12 +5,15 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Cart from './Components/Cart/Cart';
+import { AppProvider } from './Components/Context/UseContext';
 import Dashboard from './Components/Dashboard/Dashboard';
 import ErrorPage from './Components/Error/ErrorPage';
 import Home from './Components/Home/Home';
 import Root from './Components/Roots/Root';
 import Statistics from './Components/Statistics/Statistics';
 import ViewDetails from './Components/View/ViewDetails';
+import Wishlist from './Components/Wishlist/Wishlist';
 import './index.css';
 const router = createBrowserRouter([
   {
@@ -28,7 +31,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <Dashboard></Dashboard>,
+        children: [
+          {
+            path: 'cart',
+            element: <Cart></Cart>
+          },
+          {
+            path: 'wishlist',
+            element: <Wishlist></Wishlist>
+          }
+        ]
       },
       {
         path: 'viewDetails/:gadgetId',
@@ -41,6 +54,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AppProvider><RouterProvider router={router} /></AppProvider>
   </StrictMode>,
 )
