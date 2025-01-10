@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CiHeart } from 'react-icons/ci';
 import { IoCartOutline } from "react-icons/io5";
 import { useLoaderData, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { AppContext } from '../Context/UseContext';
 
 const ViewDetails = () => {
@@ -46,8 +47,28 @@ const ViewDetails = () => {
       <p className=' text-xl font-bold'>Rating: <span className=' bg-base-200 font-normal px-2 text-center rounded-xl'>{rating}</span></p>
       </div>
       <div className=' flex'>
-      <button onClick={()=> addToCart(gadgets)} className=" bg-[#9538E2] text-white font-bold text-center rounded-full btn hover:text-black">Add To Cart <IoCartOutline className=' text-xl'></IoCartOutline></button>
-      <button onClick={()=> addToWishlist(gadgets)} className=' ml-4 text-2xl border px-3 border-gray-200 rounded-full btn bg-white'><CiHeart></CiHeart></button>
+      <button
+  onClick={() => {
+    addToCart(gadgets);
+    Swal.fire({
+      title: 'Success!',
+      text: 'Item successfully added to cart.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
+  }}
+  className="bg-[#9538E2] text-white font-bold text-center rounded-full btn hover:text-black"
+>
+  Add To Cart <IoCartOutline className="text-xl"></IoCartOutline>
+</button>
+      <button onClick={()=>{ addToWishlist(gadgets);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Item successfully added to WishList.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+      }} className=' ml-4 text-2xl border px-3 border-gray-200 rounded-full btn bg-white'><CiHeart></CiHeart></button>
       </div>
     </div>
   </div>

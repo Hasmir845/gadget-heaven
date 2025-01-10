@@ -3,7 +3,7 @@ import React from 'react';
 const ErrorPage = () => {
     return (
         <div>
-            <h2>Oppos Nothing Find here</h2>
+            <h2 className=' flex justify-center items-center mt-60'>Oppos Nothing Find here</h2>
         </div>
     );
 };

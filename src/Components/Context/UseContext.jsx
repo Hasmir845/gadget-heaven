@@ -17,12 +17,15 @@ export const AppProvider = ({ children }) => {
     const removeFromCart = (itemId) => {
         setCart((prevCart) => prevCart.filter((item) => item.product_id !== itemId));
     };
+    const clearCart = () => {
+        setCart([]);
+      };
     const removeFromWishlist = (itemId) => {
         setWishlist((prevCart) => prevCart.filter((item) => item.product_id !== itemId));
     };
 
     return (
-        <AppContext.Provider value={{ cart, wishlist, addToCart, addToWishlist, removeFromCart, removeFromWishlist }}>
+        <AppContext.Provider value={{ cart, wishlist, addToCart, addToWishlist, removeFromCart, removeFromWishlist, clearCart }}>
             {children}
         </AppContext.Provider>
     );
